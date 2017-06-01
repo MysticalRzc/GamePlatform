@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="rzc" namespace="/" extends="struts-default">
+		 <global-results>
+            <result name="failed">/remind/failed.jsp</result>
+            <result name="success">/remind/success.jsp</result>
+            <result name="unLogin">/remind/unLogin.jsp</result>
+        </global-results>
+		
+		<action name="fileUp" class="test.testAction">
+			<result name="success">/remind/success.jsp</result>
+		</action>
+		
+		<!-- ====================用户模块===================== -->
+		<action name="login" class="user.service.loginAction">
+			<result name="success">/mainPage/main.jsp</result>
+		</action>
+		<action name="regist" class="user.service.registerAction">
+			<result name="success">/mainPage/main.jsp</result>
+		</action>
+		<action name="changeInfor" class="user.service.changeInforAction">
+			<result name="show">/user/changeInfor.jsp</result>
+			<result name="success">/mainPage/persionInfor.jsp</result>
+		</action>
+		
+		<!-- ================六大主页================= -->
+		<action name="gameInfor" class="game.service.gameSearchAction">
+			<result name="success">/mainPage/gameInfor.jsp</result>
+			<result name="addSuccess" type="chain">gameInfor</result>
+			<result name="deleteSuccess" type="chain">gameInfor</result>
+			<result name="buyGameSuccess">/remind/success.jsp</result>
+			<result name="unEnoughMoney">/remind/unEnoughMoney.jsp</result>		
+			<result name="canDownload">/gameFileUp/gameDown.jsp</result>		
+			<result name="shouldBuy">/remind/failed.jsp</result>			
+		</action>
+		
+		<action name="charge" class="charge.service.chargeAction">
+			<result name="success">/mainPage/charge.jsp</result>
+			<result name="chargeSuccess" type="chain">charge</result>
+		</action>
+		
+		<action name="interaction" class="friend.service.friendSearch">
+			<result name="success">/mainPage/interaction.jsp</result>
+			<result name="successToFriend">/friend/friendInfor.jsp</result>
+			<result name="addFriend">/friend/addFriend.jsp</result>
+			<result name="deleteSuccess" type="chain">interaction</result>
+			<result name="successAddFriend" type="chain">interaction</result>
+		</action>
+		
+		<action name="combatSearch" class="combat.service.combatAction">
+			<result name="success">/mainPage/combatSearch.jsp</result>
+		</action>
+		
+		<action name="personInfor" class="user.service.persionInforAction">
+			<result name="success">/mainPage/persionInfor.jsp</result>
+		</action>
+
+	</package>
+</struts>    
